@@ -13,7 +13,7 @@
 .nav-categories {
   background: #fff;
   padding: 10px 0;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .nav-categories a {
@@ -45,7 +45,7 @@
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card-img-top {
@@ -69,6 +69,28 @@
   border-radius: 10px;
   padding: 10px 20px;
   font-weight: 500;
+}
+
+/* Class riêng cho nút giỏ hàng */
+.btn-cart-custom {
+  color: #000 !important;
+  /* Chữ đen */
+  background-color: #fff;
+  /* Nền trắng */
+  border: 1px solid #fff;
+  /* Viền trắng mờ */
+  transition: all 0.3s ease;
+  /* Hiệu ứng chuyển mượt */
+}
+
+/* Khi di chuột vào (Hover) */
+.btn-cart-custom:hover {
+  border-color: #ff9900;
+  /* Viền đổi màu cam */
+  box-shadow: 0 0 10px #ff9900;
+  /* Hiệu ứng ửng sáng (glow) xung quanh màu cam */
+  color: #000;
+  /* Giữ nguyên chữ đen */
 }
 
 .text-danger {

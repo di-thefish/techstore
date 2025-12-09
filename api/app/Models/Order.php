@@ -9,7 +9,7 @@ class Order extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'total', 'status', 'payment_id', 'address_id'];
+    protected $fillable = ['user_id', 'total', 'status', 'payment_method', 'shipping_address'];
 
     public function user() {
         return $this->belongsTo(User::class);
