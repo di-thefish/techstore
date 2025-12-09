@@ -13,7 +13,7 @@ export class RegisterComponent {
   email = '';
   password = '';
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   register() {
     const data = {
@@ -25,7 +25,7 @@ export class RegisterComponent {
     this.http.post('http://localhost:8000/api/register', data)
       .subscribe({
         next: (res: any) => {
-          alert("Đăng ký thành công!");
+          //          alert("Đăng ký thành công!");
           this.router.navigate(['/login']);
         },
         error: err => {

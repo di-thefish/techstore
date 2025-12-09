@@ -13,14 +13,15 @@ export class ProductIndexComponent implements OnInit {
   // Các biến mới cho Header
   searchKeyword: string = '';
 
+  // THÊM BIẾN NÀY ĐỂ HIỂN THỊ SỐ LƯỢNG HÀNG TRONG GIỎ TRÊN HEADER
+  cartItemCount: number = 0;
+
   // -----------------------------
   // USER LOGIN INFO
   // -----------------------------
   isLoggedIn = false;
   user: any = null;
   isAdmin = false;
-
-
 
   // -----------------------------
   // PRODUCT LIST
@@ -37,6 +38,30 @@ export class ProductIndexComponent implements OnInit {
   ngOnInit(): void {
     this.loadUser();
     this.loadProducts();
+
+    // Gọi hàm lấy số lượng giỏ hàng khi khởi tạo
+    if (this.isLoggedIn) {
+      this.updateCartCount();
+    }
+  }
+
+  // Hàm tính tổng số lượng sản phẩm
+  updateCartCount() {
+    this.cartService.getCart().subscribe({
+      next: (data: any) => {
+        // API có thể trả về mảng trực tiếp hoặc object chứa mảng items
+        const items = data.items || data;
+
+        // Cách 1: Đếm tổng số lượng (Ví dụ: mua 2 cái iPhone + 1 cái ốp = 3)
+        this.cartItemCount = items.reduce((acc: number, item: any) => acc + item.quantity, 0);
+
+        // Cách 2: Nếu chỉ muốn đếm số loại sản phẩm (Ví dụ: mua 2 cái iPhone + 1 cái ốp = 2)
+        // this.cartItemCount = items.length;
+      },
+      error: (err) => {
+        console.error('Lỗi lấy số lượng giỏ hàng', err);
+      }
+    });
   }
 
   // ============================================================
@@ -65,6 +90,7 @@ export class ProductIndexComponent implements OnInit {
     this.isLoggedIn = false;
     this.isAdmin = false;
     this.user = null;
+    this.cartItemCount = 0; // Reset số lượng về 0 khi logout
 
     this.router.navigate(['/products']);
   }
@@ -125,6 +151,7 @@ export class ProductIndexComponent implements OnInit {
     this.cartService.addToCart(productId, quantity).subscribe({
       next: () => {
         alert('Đã thêm vào giỏ hàng!');
+        this.updateCartCount();
       },
       error: err => {
         console.error('Lỗi thêm vào giỏ hàng:', err);

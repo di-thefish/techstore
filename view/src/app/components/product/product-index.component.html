@@ -19,9 +19,12 @@
 
       <ng-container *ngIf="isLoggedIn">
 
-        <button *ngIf="!isAdmin" (click)="goCart()" class="btn btn-light btn-outline-light position-relative fw-bold">
+        <button *ngIf="!isAdmin" (click)="goCart()" class="btn btn-cart-custom position-relative fw-bold">
           🛒 Giỏ hàng
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">
+          <span *ngIf="cartItemCount > 0"
+            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark border border-light">
+            {{ cartItemCount }}
+            <span class="visually-hidden">sản phẩm trong giỏ</span>
           </span>
         </button>
 
@@ -88,17 +91,20 @@
     <!-- 📌 SLIDER CHÍNH -->
     <div class="col-md-6">
       <div class="main-banner mb-3">
-        <img src="https://cdn2.cellphones.com.vn/433x/media/catalog/product/i/p/iphone-17-pro-mau-moi-1.png"
+        <img
+          src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-17-pro-cam_4.jpg"
           class="img-fluid rounded shadow-sm" alt="slider">
       </div>
 
       <div class="row g-2">
         <div class="col-6">
-          <img src="https://cdn2.cellphones.com.vn/433x/media/catalog/product/s/a/samsung-s25-fe.png"
+          <img
+            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/s/a/samsung-galaxy-s25-fe-3.jpg"
             class="img-fluid rounded shadow-sm">
         </div>
         <div class="col-6">
-          <img src="https://cdn2.cellphones.com.vn/433x/media/catalog/product/i/p/ipad-pro.png"
+          <img
+            src="https://cdn2.cellphones.com.vn/insecure/rs:fill:0:358/q:90/plain/https://cellphones.com.vn/media/catalog/product/i/p/ipad-pro-m5.jpg"
             class="img-fluid rounded shadow-sm">
         </div>
       </div>

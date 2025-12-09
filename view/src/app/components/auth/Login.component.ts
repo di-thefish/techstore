@@ -35,7 +35,7 @@ export class LoginComponent {
           // 🔥 Lưu user (role, id, name ...)
           localStorage.setItem('user', JSON.stringify(res.user));
 
-          alert("Đăng nhập thành công!");
+          //          alert("Đăng nhập thành công!");
 
 
           this.router.navigate(['/products']);
