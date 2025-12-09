@@ -20,13 +20,12 @@ export class ProductIndexComponent implements OnInit {
   user: any = null;
   isAdmin = false;
 
-
-
   // -----------------------------
   // PRODUCT LIST
   // -----------------------------
   products: Product[] = [];
   quantities: Record<number, number> = {};
+  loading: boolean = true; // ✅ Thêm biến loading
 
   constructor(
     private productService: ProductService,
@@ -82,6 +81,7 @@ export class ProductIndexComponent implements OnInit {
   // LOAD PRODUCT LIST
   // ============================================================
   loadProducts(): void {
+    this.loading = true; // ✅ bật loading khi bắt đầu
     this.productService.getAll().subscribe({
       next: (data: Product[]) => {
         this.products = data;
@@ -92,9 +92,12 @@ export class ProductIndexComponent implements OnInit {
             this.quantities[p.id] = 1;
           }
         });
+
+        this.loading = false; // ✅ tắt loading khi xong
       },
       error: err => {
         console.error('Lỗi load sản phẩm:', err);
+        this.loading = false; // ✅ tắt loading nếu lỗi
       }
     });
   }
