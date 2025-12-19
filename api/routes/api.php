@@ -28,11 +28,6 @@ Route::apiResource('products', ProductController::class);
 |--------------------------------------------------------------------------
 */
 Route::middleware('auth:sanctum')->group(function () {
-<<<<<<< HEAD
-    Route::post('/cart', [CartController::class, 'add']);
-    Route::get('/cart', [CartController::class, 'index']);
-    Route::delete('/cart/{productId}', [CartController::class, 'remove']);
-=======
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +37,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/cart', [CartController::class, 'index']);
     Route::post('/cart/add', [CartController::class, 'add']);
     Route::post('/cart/remove', [CartController::class, 'remove']);
->>>>>>> 698eda5 (them giam sat don hang)
 
     /*
     |--------------------------------------------------------------------------
