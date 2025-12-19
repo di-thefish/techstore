@@ -2,7 +2,11 @@
 <div class="header-main py-3" style="background-color: #d70018;">
   <div class="container d-flex justify-content-between align-items-center">
 
-    <a (click)="goHome()" class="text-white text-decoration-none fw-bold fs-4 me-4" style="cursor: pointer;">STORE</a>
+    <a (click)="goHome()"
+       class="text-white text-decoration-none fw-bold fs-4 me-4"
+       style="cursor: pointer;">
+      STORE
+    </a>
 
     <div class="d-flex align-items-center gap-3 text-white">
 
@@ -11,29 +15,60 @@
       </span>
 
       <ng-container *ngIf="isLoggedIn">
-        <button *ngIf="!isAdmin" (click)="goCart()" class="btn btn-cart-custom position-relative fw-bold">
+
+<!-- USER: Đơn hàng cá nhân -->
+<button *ngIf="!isAdmin"
+        (click)="goOrders()"
+        class="btn btn-light fw-bold">
+  📦 Đơn hàng của tôi
+</button>
+
+<!-- ADMIN: Quản lý đơn hàng -->
+<button *ngIf="isAdmin"
+        (click)="goOrders()"
+        class="btn btn-danger fw-bold">
+  📦 Quản lý đơn hàng
+</button>
+
+
+        <!-- 🛒 GIỎ HÀNG -->
+        <button *ngIf="!isAdmin"
+                (click)="goCart()"
+                class="btn btn-cart-custom position-relative fw-bold">
           🛒 Giỏ hàng
           <span *ngIf="cartItemCount > 0"
-            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark border border-light">
+                class="position-absolute top-0 start-100 translate-middle
+                       badge rounded-pill bg-warning text-dark border border-light">
             {{ cartItemCount }}
           </span>
         </button>
 
-        <button *ngIf="isAdmin" (click)="addProductModal()" class="btn btn-warning fw-bold text-dark">
+        <!-- ADMIN -->
+        <button *ngIf="isAdmin"
+                (click)="addProductModal()"
+                class="btn btn-warning fw-bold text-dark">
           ➕ Thêm sản phẩm
         </button>
+
       </ng-container>
 
-      <button *ngIf="!isLoggedIn" (click)="goLogin()" class="btn btn-light text-danger fw-bold">
+      <!-- AUTH -->
+      <button *ngIf="!isLoggedIn"
+              (click)="goLogin()"
+              class="btn btn-light text-danger fw-bold">
         Đăng nhập
       </button>
 
-      <button *ngIf="isLoggedIn" (click)="logout()" class="btn btn-light border-light">
+      <button *ngIf="isLoggedIn"
+              (click)="logout()"
+              class="btn btn-light border-light">
         Đăng xuất
       </button>
+
     </div>
   </div>
 </div>
+
 
 <!-- TOP BANNER -->
 <div class="top-banner text-center text-white py-1" style="background: #000;">

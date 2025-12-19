@@ -14,17 +14,17 @@ export class ProductIndexComponent implements OnInit {
   searchKeyword: string = '';
   cartItemCount: number = 0;
 
-  // User info
+  // ===== USER INFO =====
   isLoggedIn = false;
   user: any = null;
   isAdmin = false;
 
-  // Product list
+  // ===== PRODUCTS =====
   products: Product[] = [];
   quantities: Record<number, number> = {};
   loading: boolean = true;
 
-  // Categories
+  // ===== CATEGORIES =====
   categories: Category[] = [];
   selectedCategory: number = 0;
 
@@ -48,7 +48,7 @@ export class ProductIndexComponent implements OnInit {
   // ======================
   // LOAD USER
   // ======================
-  loadUser() {
+  loadUser(): void {
     const token = localStorage.getItem('token');
     const userData = localStorage.getItem('user');
 
@@ -56,14 +56,16 @@ export class ProductIndexComponent implements OnInit {
 
     if (userData) {
       this.user = JSON.parse(userData);
-      this.isAdmin = this.user.role === 'admin';
+      this.isAdmin =
+        typeof this.user.role === 'string' &&
+        this.user.role.toLowerCase() === 'admin';
     }
   }
 
   // ======================
   // LOAD CATEGORIES
   // ======================
-  loadCategories() {
+  loadCategories(): void {
     this.categoryService.getAll().subscribe({
       next: (data) => this.categories = data,
       error: (err) => console.error('Lỗi load danh mục:', err)
@@ -79,7 +81,9 @@ export class ProductIndexComponent implements OnInit {
       next: (data: Product[]) => {
         this.products = data;
         this.products.forEach(p => {
-          if (p.id !== undefined) this.quantities[p.id] = 1;
+          if (p.id !== undefined) {
+            this.quantities[p.id] = 1;
+          }
         });
         this.loading = false;
       },
@@ -93,7 +97,7 @@ export class ProductIndexComponent implements OnInit {
   // ======================
   // FILTER BY CATEGORY
   // ======================
-  filterByCategory(categoryId: number | null) {
+  filterByCategory(categoryId: number | null): void {
     this.selectedCategory = categoryId ?? 0;
 
     if (!categoryId) {
@@ -117,17 +121,20 @@ export class ProductIndexComponent implements OnInit {
   // ======================
   // CART
   // ======================
-  updateCartCount() {
+  updateCartCount(): void {
     this.cartService.getCart().subscribe({
       next: (data: any) => {
         const items = data.items || data;
-        this.cartItemCount = items.reduce((acc: number, item: any) => acc + item.quantity, 0);
+        this.cartItemCount = items.reduce(
+          (acc: number, item: any) => acc + item.quantity,
+          0
+        );
       },
       error: (err) => console.error(err)
     });
   }
 
-  addToCart(productId?: number) {
+  addToCart(productId?: number): void {
     if (!productId) return;
 
     if (!this.isLoggedIn) {
@@ -150,22 +157,50 @@ export class ProductIndexComponent implements OnInit {
   // ======================
   // NAVIGATION
   // ======================
-  goHome() { this.router.navigate(['/products']); }
-  goLogin() { this.router.navigate(['/login']); }
-  goCart() { this.router.navigate(['/cart']); }
-  addProductModal() { this.router.navigate(['/admin/products/create']); }
+  goHome(): void {
+    this.router.navigate(['/products']);
+  }
 
-  logout() {
+  goLogin(): void {
+    this.router.navigate(['/login']);
+  }
+
+  goCart(): void {
+    this.router.navigate(['/cart']);
+  }
+
+  // ✅ PHÂN QUYỀN XEM ĐƠN HÀNG
+  goOrders(): void {
+    if (!this.isLoggedIn || !this.user) {
+      alert('Bạn cần đăng nhập để xem đơn hàng');
+      this.router.navigate(['/login']);
+      return;
+    }
+
+    if (this.isAdmin) {
+      this.router.navigate(['/admin/orders']);
+    } else {
+      this.router.navigate(['/orders']);
+    }
+  }
+
+  addProductModal(): void {
+    this.router.navigate(['/admin/products/create']);
+  }
+
+  logout(): void {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.isLoggedIn = false;
     this.user = null;
+    this.isAdmin = false;
     this.cartItemCount = 0;
     this.router.navigate(['/products']);
   }
 
-  viewProduct(id?: number) {
-    if (id) this.router.navigate(['/products', id]);
+  viewProduct(id?: number): void {
+    if (id) {
+      this.router.navigate(['/products', id]);
+    }
   }
-
 }
