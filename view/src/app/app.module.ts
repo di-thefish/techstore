@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // Product Components
 import { HeaderComponent } from './components/product/header.component';
 =======
@@ -18,6 +19,11 @@ import { HeaderComponent } from './components/product/header.component';
 =======
 /* ===== PRODUCT ===== */
 >>>>>>> 698eda5 (them giam sat don hang)
+=======
+
+/* ===== PRODUCT ===== */
+import { HeaderComponent } from './components/product/header.component';
+>>>>>>> 13998e8 (Resolve merge conflicts in routing and component files; update header and product index components for improved navigation and styling.)
 import { ProductIndexComponent } from './components/product/product-index.component';
 import { ProductDetailComponent } from './components/product/product-detail.component';
 import { ProductCreateComponent } from './components/product/product-create.component';
@@ -43,11 +49,15 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
     /* Product */
 >>>>>>> 698eda5 (them giam sat don hang)
+=======
+    HeaderComponent,
+>>>>>>> 13998e8 (Resolve merge conflicts in routing and component files; update header and product index components for improved navigation and styling.)
     ProductIndexComponent,
     ProductDetailComponent,
     ProductCreateComponent,
@@ -81,4 +91,4 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

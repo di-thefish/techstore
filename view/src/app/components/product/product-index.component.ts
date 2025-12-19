@@ -138,6 +138,7 @@ export class ProductIndexComponent implements OnInit {
   // ======================
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   // updateCartCount() {
   //   this.cartService.getCart().subscribe({
   //     next: (data: any) => {
@@ -163,6 +164,9 @@ export class ProductIndexComponent implements OnInit {
     });
   }
 >>>>>>> 698eda5 (them giam sat don hang)
+=======
+
+>>>>>>> 13998e8 (Resolve merge conflicts in routing and component files; update header and product index components for improved navigation and styling.)
 
   addToCart(productId?: number): void {
     if (!productId) return;
@@ -184,6 +188,7 @@ export class ProductIndexComponent implements OnInit {
     });
   }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   viewProduct(id?: number) {
@@ -258,6 +263,13 @@ export class ProductIndexComponent implements OnInit {
   }
 >>>>>>> 698eda5 (them giam sat don hang)
 =======
+=======
+
+  viewProduct(id?: number) {
+    if (id) this.router.navigate(['/products', id]);
+  }
+
+>>>>>>> 13998e8 (Resolve merge conflicts in routing and component files; update header and product index components for improved navigation and styling.)
   // ======================
   // NAVIGATION
   // ======================
@@ -265,6 +277,7 @@ export class ProductIndexComponent implements OnInit {
     this.router.navigate(['/products']);
   }
 
+<<<<<<< HEAD
   goLogin(): void {
     this.router.navigate(['/login']);
   }
@@ -308,4 +321,15 @@ export class ProductIndexComponent implements OnInit {
     }
   }
 >>>>>>> 698eda5 (them giam sat don hang)
+=======
+  // logout() {
+  //   localStorage.removeItem('token');
+  //   localStorage.removeItem('user');
+  //   this.isLoggedIn = false;
+  //   this.user = null;
+  //   this.cartItemCount = 0;
+  //   this.router.navigate(['/products']);
+  // }
+
+>>>>>>> 13998e8 (Resolve merge conflicts in routing and component files; update header and product index components for improved navigation and styling.)
 }
