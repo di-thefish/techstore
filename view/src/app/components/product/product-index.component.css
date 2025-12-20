@@ -159,6 +159,13 @@
   background-color: #b60014;
 }
 
+.btn-danger:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
 /* Responsive fixes */
 @media (max-width: 768px) {
   .main-slider-img {

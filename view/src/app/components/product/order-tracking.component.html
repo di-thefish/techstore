@@ -1,9 +1,5 @@
+<app-header></app-header>
 <div class="order-page">
-
-  <!-- HEADER -->
-  <div class="order-header">
-    <h2>Order Tracking</h2>
-  </div>
 
   <!-- TABLE -->
   <div class="order-card">
@@ -52,23 +48,13 @@
 
           <!-- ADMIN ACTION -->
           <td *ngIf="isAdmin">
-            <button
-              class="btn-edit"
-              *ngIf="editingOrderId !== order.id"
-              (click)="startEdit(order)"
-            >
+            <button class="btn-edit" *ngIf="editingOrderId !== order.id" (click)="startEdit(order)">
               Edit
             </button>
 
-            <div
-              class="edit-box"
-              *ngIf="editingOrderId === order.id"
-            >
+            <div class="edit-box" *ngIf="editingOrderId === order.id">
               <select [(ngModel)]="editData.status">
-                <option
-                  *ngFor="let s of statusList"
-                  [value]="s"
-                >
+                <option *ngFor="let s of statusList" [value]="s">
                   {{ s | titlecase }}
                 </option>
               </select>
