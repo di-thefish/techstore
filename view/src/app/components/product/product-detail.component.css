@@ -1,21 +1,134 @@
-/* product-detail.component.css */
-.container {
-  padding: 20px;
+/* Container chính */
+.main-wrapper {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
-.product-detail {
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 20px;
-  max-width: 600px;
-  margin: 0 auto;
+
+/* Card bao quanh */
+.product-detail-card {
+  border: 1px solid #eee;
 }
-.product-detail h2 {
-  margin-bottom: 15px;
+
+/* Ảnh sản phẩm */
+.image-gallery {
+  background: #fff;
+  height: 400px;
+  /* Cố định chiều cao khung ảnh */
+  overflow: hidden;
 }
-.product-detail p {
+
+.main-product-img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  /* Giúp ảnh không bị cắt mất chi tiết */
+  transition: transform 0.3s;
+}
+
+.main-product-img:hover {
+  transform: scale(1.05);
+  /* Zoom nhẹ khi di chuột */
+}
+
+/* Tiêu đề & Giá */
+.product-title {
+  font-size: 24px;
+  line-height: 1.3;
+  color: #333;
+}
+
+.price-box {
+  background: #fdf2f2;
+  /* Nền đỏ nhạt */
+  border: 1px dashed #d70018;
+}
+
+.current-price {
+  color: #d70018;
+}
+
+/* Input số lượng */
+.qty-input {
+  width: 70px;
+  height: 40px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.qty-input:focus {
+  border-color: #d70018;
+  box-shadow: 0 0 0 3px rgba(215, 0, 24, 0.1);
+}
+
+/* Nút Mua Ngay (Quan trọng nhất) */
+.btn-buy-now {
+  background: linear-gradient(180deg, #d70018 0%, #b60014 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
   font-size: 16px;
-  margin-bottom: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  box-shadow: 0 4px 10px rgba(215, 0, 24, 0.3);
 }
-.btn {
-  margin-top: 10px;
+
+.btn-buy-now:hover {
+  background: linear-gradient(180deg, #b60014 0%, #90000e 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(215, 0, 24, 0.4);
+  color: #fff;
+}
+
+.btn-buy-now:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Nút Quay lại */
+.btn-link {
+  color: #555;
+  font-size: 14px;
+}
+
+.btn-link:hover {
+  color: #d70018;
+}
+
+/* Phần Mô tả */
+.description-box {
+  line-height: 1.6;
+  color: #444;
+}
+
+.description-content {
+  white-space: pre-line;
+  /* Giữ nguyên các dấu xuống dòng của văn bản gốc */
+}
+
+/* Admin Actions */
+.admin-actions button {
+  font-weight: 500;
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+  .image-gallery {
+    height: 300px;
+  }
+
+  .product-title {
+    font-size: 20px;
+  }
+
+  .price-box {
+    text-align: center;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
 }
