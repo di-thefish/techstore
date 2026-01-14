@@ -29,36 +29,13 @@ Route::apiResource('products', ProductController::class);
 */
 Route::middleware('auth:sanctum')->group(function () {
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    /*
-    |--------------------------------------------------------------------------
-    | CART
-    |--------------------------------------------------------------------------
-    */
-=======
-=======
     // ======================
->>>>>>> deb530a (final fix)
-=======
-    // ======================
->>>>>>> deb530a88034b9a5841ab402876465145cc07c5b
     // CART
     // ======================
-    Route::post('/cart', [CartController::class, 'add']);
->>>>>>> 2829bbb (them giam sat don hang)
     Route::get('/cart', [CartController::class, 'index']);
-<<<<<<< HEAD
-<<<<<<< HEAD
-    Route::post('/cart/add', [CartController::class, 'add']);
-    Route::post('/cart/remove', [CartController::class, 'remove']);
-=======
-=======
->>>>>>> deb530a88034b9a5841ab402876465145cc07c5b
-    Route::put('/cart/update', [CartController::class, 'update']); // ✅ FIX
+    Route::post('/cart', [CartController::class, 'add']);
+    Route::put('/cart', [CartController::class, 'update']);
     Route::delete('/cart/{productId}', [CartController::class, 'remove']);
->>>>>>> deb530a (final fix)
 
     // ======================
     // ORDERS
@@ -66,8 +43,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/orders', [OrderController::class, 'index']);
     Route::get('/orders/{id}', [OrderController::class, 'show']);
     Route::post('/orders/checkout', [OrderController::class, 'checkout']);
-    Route::put('/orders/{id}/status', [OrderController::class, 'updateStatus']);
     Route::put('/orders/{id}', [OrderController::class, 'update']);
+    Route::put('/orders/{id}/status', [OrderController::class, 'updateStatus']);
 
     // ======================
     // PRODUCT IMAGES (ADMIN)

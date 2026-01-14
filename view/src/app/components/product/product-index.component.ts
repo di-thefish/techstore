@@ -51,6 +51,7 @@ export class ProductIndexComponent implements OnInit {
     this.loadUser();
     this.loadCategories();
     this.loadProducts();
+    this.updateCartCount();
   }
 
   // ======================
@@ -118,7 +119,7 @@ export class ProductIndexComponent implements OnInit {
   }
 
   // ======================
-  // IMAGE SAFE GETTER
+  // IMAGE
   // ======================
   getMainImage(product: Product): string {
     return product.images?.[0]?.image_path ?? 'assets/no-image.png';
@@ -127,44 +128,19 @@ export class ProductIndexComponent implements OnInit {
   // ======================
   // CART
   // ======================
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  // updateCartCount() {
-  //   this.cartService.getCart().subscribe({
-  //     next: (data: any) => {
-  //       const items = data.items || data;
-  //       this.cartItemCount = items.reduce((acc: number, item: any) => acc + item.quantity, 0);
-  //     },
-  //     error: (err) => console.error(err)
-  //   });
-  // }
-=======
-=======
->>>>>>> 698eda5 (them giam sat don hang)
   updateCartCount(): void {
     this.cartService.getCart().subscribe({
       next: (data: any) => {
         const items = data.items || data;
         this.cartItemCount = items.reduce(
-          (acc: number, item: any) => acc + item.quantity,
+          (sum: number, item: any) => sum + item.quantity,
           0
         );
       },
       error: (err) => console.error(err)
     });
   }
->>>>>>> 698eda5 (them giam sat don hang)
-=======
 
->>>>>>> 13998e8 (Resolve merge conflicts in routing and component files; update header and product index components for improved navigation and styling.)
-
-=======
->>>>>>> 2829bbb (them giam sat don hang)
-=======
->>>>>>> deb530a88034b9a5841ab402876465145cc07c5b
   addToCart(productId?: number): void {
     if (!productId) return;
 
@@ -177,36 +153,11 @@ export class ProductIndexComponent implements OnInit {
     const qty = this.quantities[productId] ?? 1;
 
     this.cartService.addToCart(productId, qty).subscribe({
+      next: () => this.updateCartCount(),
       error: () => alert('Không thể thêm vào giỏ hàng')
     });
   }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  viewProduct(id?: number) {
-    if (id) this.router.navigate(['/products', id]);
-  }
-
-  // ======================
-  // NAVIGATION
-  // ======================
-  // goHome() { this.router.navigate(['/products']); }
-  // goLogin() { this.router.navigate(['/login']); }
-  // goCart() { this.router.navigate(['/cart']); }
-  // addProductModal() { this.router.navigate(['/admin/products/create']); }
-
-  // logout() {
-  //   localStorage.removeItem('token');
-  //   localStorage.removeItem('user');
-  //   this.isLoggedIn = false;
-  //   this.user = null;
-  //   this.cartItemCount = 0;
-  //   this.router.navigate(['/products']);
-  // }
-=======
   // ======================
   // NAVIGATION
   // ======================
@@ -222,7 +173,6 @@ export class ProductIndexComponent implements OnInit {
     this.router.navigate(['/cart']);
   }
 
-  // ✅ PHÂN QUYỀN XEM ĐƠN HÀNG
   goOrders(): void {
     if (!this.isLoggedIn || !this.user) {
       alert('Bạn cần đăng nhập để xem đơn hàng');
@@ -230,11 +180,9 @@ export class ProductIndexComponent implements OnInit {
       return;
     }
 
-    if (this.isAdmin) {
-      this.router.navigate(['/admin/orders']);
-    } else {
-      this.router.navigate(['/orders']);
-    }
+    this.router.navigate(
+      this.isAdmin ? ['/admin/orders'] : ['/orders']
+    );
   }
 
   addProductModal(): void {
@@ -252,89 +200,7 @@ export class ProductIndexComponent implements OnInit {
   }
 
   viewProduct(id?: number): void {
-    if (id) {
-      this.router.navigate(['/products', id]);
-    }
+    if (!id) return;
+    this.router.navigate(['/products', id]);
   }
->>>>>>> 698eda5 (them giam sat don hang)
-=======
-=======
-
-  viewProduct(id?: number) {
-    if (id) this.router.navigate(['/products', id]);
-  }
-
->>>>>>> 13998e8 (Resolve merge conflicts in routing and component files; update header and product index components for improved navigation and styling.)
-  // ======================
-  // NAVIGATION
-  // ======================
-  goHome(): void {
-    this.router.navigate(['/products']);
-  }
-
-<<<<<<< HEAD
-  goLogin(): void {
-    this.router.navigate(['/login']);
-  }
-
-  goCart(): void {
-    this.router.navigate(['/cart']);
-  }
-
-  // ✅ PHÂN QUYỀN XEM ĐƠN HÀNG
-  goOrders(): void {
-    if (!this.isLoggedIn || !this.user) {
-      alert('Bạn cần đăng nhập để xem đơn hàng');
-      this.router.navigate(['/login']);
-      return;
-    }
-
-    if (this.isAdmin) {
-      this.router.navigate(['/admin/orders']);
-    } else {
-      this.router.navigate(['/orders']);
-    }
-  }
-
-  addProductModal(): void {
-    this.router.navigate(['/admin/products/create']);
-  }
-
-  logout(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    this.isLoggedIn = false;
-    this.user = null;
-    this.isAdmin = false;
-    this.cartItemCount = 0;
-    this.router.navigate(['/products']);
-  }
-
-  viewProduct(id?: number): void {
-    if (id) {
-      this.router.navigate(['/products', id]);
-    }
-  }
->>>>>>> 698eda5 (them giam sat don hang)
-=======
-  // logout() {
-  //   localStorage.removeItem('token');
-  //   localStorage.removeItem('user');
-  //   this.isLoggedIn = false;
-  //   this.user = null;
-  //   this.cartItemCount = 0;
-  //   this.router.navigate(['/products']);
-  // }
-
->>>>>>> 13998e8 (Resolve merge conflicts in routing and component files; update header and product index components for improved navigation and styling.)
-=======
-  viewProduct(id?: number): void {
-    if (id) this.router.navigate(['/products', id]);
-  }
->>>>>>> 2829bbb (them giam sat don hang)
-=======
-  viewProduct(id?: number): void {
-    if (id) this.router.navigate(['/products', id]);
-  }
->>>>>>> deb530a88034b9a5841ab402876465145cc07c5b
 }

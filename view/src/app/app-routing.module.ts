@@ -11,7 +11,6 @@ import { RegisterComponent } from './components/auth/Register.component';
 
 /* ===== ORDERS ===== */
 import { OrderTrackingComponent } from './components/product/order-tracking.component';
-// import { OrderDetailComponent } from './components/orders/order-detail.component';
 
 /* ===== ADMIN ===== */
 import { ProductCreateComponent } from './components/product/product-create.component';
@@ -19,21 +18,8 @@ import { ProductEditComponent } from './components/product/product-edit.componen
 import { ProductDeleteComponent } from './components/product/product-delete.component';
 
 const routes: Routes = [
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-  // Khi chạy ứng dụng, tự động chuyển đến trang sản phẩm
-  { path: '', redirectTo: 'products', pathMatch: 'full' },
-=======
-=======
->>>>>>> 698eda5 (them giam sat don hang)
   /* ===== DEFAULT ===== */
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
->>>>>>> 698eda5 (them giam sat don hang)
-=======
-  // Khi chạy ứng dụng, tự động chuyển đến trang sản phẩm
   { path: '', redirectTo: 'products', pathMatch: 'full' },
->>>>>>> 13998e8 (Resolve merge conflicts in routing and component files; update header and product index components for improved navigation and styling.)
 
   /* ===== AUTH ===== */
   { path: 'login', component: LoginComponent },
@@ -55,11 +41,11 @@ const routes: Routes = [
   { path: 'admin/products/delete/:id', component: ProductDeleteComponent },
 
   /* ===== WILDCARD ===== */
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: 'products' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
